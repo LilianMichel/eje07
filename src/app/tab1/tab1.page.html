@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      INGREDIENTES PARA PASTA
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +13,25 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Ingredientes</ion-label>
+    </ion-list-header>
+    <div *ngFor="let ingredient of ingredients; index as i">
+      <ion-item-sliding  (ionSwipe)="changeStatus(i)">
+        <ion-item>
+          <img src={{ingredient.imagen}} width="100px" height="50px">
+          <ion-label>{{ingredient.name}}</ion-label> 
+          <ion-chip color="success" *ngIf="ingredient.active">
+            <ion-label>Activo</ion-label>
+          </ion-chip>
+          <ion-chip color="danger" *ngIf="!ingredient.active">
+            <ion-label>Inactivo</ion-label>
+          </ion-chip>
+        </ion-item>
+        <ion-item-options side="start">
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
 </ion-content>

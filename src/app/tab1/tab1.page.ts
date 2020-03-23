@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Ingredient } from '../models/ingredient.service';
+import { IngredientService } from '../services/ingredient.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  ingredients: Ingredient[];
+
+  constructor(private ingredientService: IngredientService) {
+    this.ingredients = ingredientService.getIngredients();
+  }
+
+  changeStatus(pos: number): void {
+    this.ingredientService.changeStatus(pos);
+  }
 
 }
